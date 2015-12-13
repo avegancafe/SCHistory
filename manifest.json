@@ -12,5 +12,9 @@
   "content_scripts": [{
     "js": ["content.js"],
     "matches": ["*://soundcloud.com/*"]
-  }]
+  }],
+  "permissions": [
+      "storage",
+      "*://soundcloud.com/*"
+  ]
 }
