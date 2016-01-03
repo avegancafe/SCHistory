@@ -1,29 +1,32 @@
 "use strict";
+/*
 chrome.storage.local.remove("tracks");
 chrome.storage.local.remove("SCHistory");
-
+*/
 
 var hist = [];
 
 var songObserver = new MutationObserver(
     function (muts) {
-        var title;
+        var song = {};
         for(var i = 0; i < muts.length; i++) {
             if (muts[i].target.classList.contains("playbackSoundBadge")) {
                 var cur = muts[i].target.getElementsByClassName("playbackSoundBadge__title sc-truncate")[0];
-                title = cur.childNodes[1].innerHTML.slice(15);
+                var img = muts[i].target.getElementsByClassName("sc-artwork")[0].childNodes[1];
+                song.title = cur.title;
+                song.url = cur.href;
+                song.img = img.getAttribute("style").replace(" opacity: 0;", "");
                 break;
             }
         }
-        if (title !== undefined) {
+
+        if (song.title !== undefined) {
             var all;
             chrome.storage.local.get("SCHistory", function (items) {
-                console.log(items);
                 if (items.SCHistory === undefined) items.SCHistory = [];
 
-                items.SCHistory.push(title);
+                items.SCHistory.push(song);
                 chrome.storage.local.set({"SCHistory": items.SCHistory});
-                console.log("done");
             });
         }
     }
