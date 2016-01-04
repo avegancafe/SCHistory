@@ -1,0 +1,44 @@
+*:focus {
+    outline: 0px;
+}
+
+a:link {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:visited {
+    color: inherit;
+}
+
+body {
+    font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+    font-size: 100%;
+}
+
+#history {
+    width: 400px;
+}
+
+#react {
+    width: 400px;
+}
+
+.song {
+    width: 100%;
+}
+
+.song span{
+    display: inline-block;
+}
+
+.song .song-title {
+    line-height: 2em;
+    width: calc(100% - 30px);
+    display: inline-block;
+    vertical-align: top;
+    overflow-x: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
