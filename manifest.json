@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
 
-  "name": "Getting started example",
-  "description": "This extension shows a Google Image search result for the current page",
+  "name": "SoundCloud History",
+  "description": "This extension allows you to view previously played songs on soundcloud.com.",
   "version": "1.0",
 
   "browser_action": {
