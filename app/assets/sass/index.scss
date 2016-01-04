@@ -1,0 +1,55 @@
+*:focus {
+    outline: 0px;
+}
+
+a:link {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:visited {
+    color: inherit;
+}
+
+body {
+    font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+    font-size: 100%;
+}
+
+#clear {
+  border-radius: 3px;
+  background-color: lightblue;
+
+  margin: 5px 5px;
+  padding: 5px 5px;
+  width: calc(100% - 20px);
+  text-align: center;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+#react {
+    width: 400px;
+}
+
+.song {
+    width: 100%;
+
+    & .song-title {
+        line-height: calc(2em + 10px);
+        width: calc(100% - 40px);
+        display: inline-block;
+        vertical-align: top;
+        overflow-x: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    & span {
+        margin: 5px 5px 0 5px;
+        display: inline-block;
+    }
+}
+

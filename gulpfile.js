@@ -1,5 +1,6 @@
 var gulp = require("gulp");
 var react = require("gulp-react");
+var sass = require("gulp-sass");
 
 gulp.task("react", function () {
   return gulp.src(["app/assets/jsx/**/*.jsx"])
@@ -7,4 +8,10 @@ gulp.task("react", function () {
     .pipe(gulp.dest("app/assets/javascripts"));
 });
 
-gulp.task("default", ["react"]);
+gulp.task("sass", function () {
+  return gulp.src(["app/assets/sass/**/*.scss"])
+    .pipe(sass().on("error", sass.logError))
+    .pipe(gulp.dest("app/assets/stylesheets"));
+});
+
+gulp.task("default", ["react", "sass"]);

@@ -1,3 +1,10 @@
+function toCamelCase(str) { return str.replace(/-([a-z])/g, function (g) { return g[1].toUpperCase(); });
+}
+
+function clearMem() {
+  chrome.storage.local.remove("SCHistory");
+}
+
 var HistList = React.createClass({displayName: "HistList",
   getInitialState: function () {
     return {
@@ -12,9 +19,8 @@ var HistList = React.createClass({displayName: "HistList",
   _getSongList: function () {
     var that = this;
     chrome.storage.local.get("SCHistory", function (items) {
-      console.log(items);
       that.setState({
-        songList: items.SCHistory
+        songList: items.SCHistory || []
       });
     });
   },
@@ -23,13 +29,18 @@ var HistList = React.createClass({displayName: "HistList",
     this._getSongList();
   },
 
+  clearHist: function () {
+    clearMem();
+    this._getSongList();
+  },
+
   render: function () {
-    console.log("rendering");
    return (
       React.createElement("div", null, 
+        React.createElement("div", {id: "clear", onClick: this.clearHist}, "Clear"), 
         this.state.songList.map(function (el, i, arr) {
           return React.createElement(Song, {key: i, imgStyle: el.img, title: el.title, url: el.url})
-        })
+        }).reverse()
       )
     );
   }
@@ -44,19 +55,15 @@ var Song = React.createClass({displayName: "Song",
     }
   },
 
-  componentWillMount: function () {
-    console.log("some song?");
-  },
   render: function () {
     var fin = {
-      "background-size": "cover"
+      "backgroundSize": "cover"
     };
     var p = /([^;\s]+):([^;]*)/g;
     var m;
     while ( (m = p.exec(this.props.imgStyle)) !== null) {
-      fin[m[1]] = m[2];
+      fin[toCamelCase(m[1])] = m[2];
     }
-    console.log("done:", fin);
 
     return (
       React.createElement("div", {className: "song"}, 

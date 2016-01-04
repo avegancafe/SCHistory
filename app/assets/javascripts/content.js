@@ -1,8 +1,4 @@
 "use strict";
-/*
-chrome.storage.local.remove("tracks");
-chrome.storage.local.remove("SCHistory");
-*/
 
 var hist = [];
 
@@ -24,6 +20,23 @@ var songObserver = new MutationObserver(
             var all;
             chrome.storage.local.get("SCHistory", function (items) {
                 if (items.SCHistory === undefined) items.SCHistory = [];
+
+                var ind = 0;
+                var found = items.SCHistory.filter(function (el, i, arr) {
+                  if (el.title === song.title) {
+                    ind = i;
+                    return true;
+                  }
+
+                  return false;
+                });
+
+                if (found.length > 0) {
+                  console.log("FOUND:", found);
+                  console.log("initially:", items.SCHistory);
+                  items.SCHistory.splice(ind, 1);
+                  console.log("finally:", items.SCHistory);
+                }
 
                 items.SCHistory.push(song);
                 chrome.storage.local.set({"SCHistory": items.SCHistory});
