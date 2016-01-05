@@ -38,9 +38,11 @@ var HistList = React.createClass({
    return (
       <div>
         <div id="clear" onClick={this.clearHist}>Clear</div>
-        {this.state.songList.map(function (el, i, arr) {
-          return <Song key={i} imgStyle={el.img} title={el.title} url={el.url}/>
-        }).reverse()}
+        {
+          this.state.songList.reverse().map(function (el, i, arr) {
+            return <Song key={i} imgStyle={el.img} title={el.title} url={el.url} i={i/(arr.length-1 || 1)}/>
+          })
+        }
       </div>
     );
   }
@@ -51,7 +53,8 @@ var Song = React.createClass({
     return {
       imgStyle: "",
       url: "",
-      title: ""
+      title: "",
+      i: 0
     }
   },
 
@@ -59,20 +62,29 @@ var Song = React.createClass({
     var fin = {
       "backgroundSize": "cover"
     };
-    var p = /([^;\s]+):([^;]*)/g;
+    var p = /([\w-]+):\s?([^;]*)/g;
     var m;
+    console.log(this.props.imgStyle);
     while ( (m = p.exec(this.props.imgStyle)) !== null) {
+      console.log(m[1], ":", m[2]);
       fin[toCamelCase(m[1])] = m[2];
     }
-
+    var divider;
+    if (this.props.i < 1)
+      divider = <hr className="divider"/>;
+    else
+      divider = "";
     return (
       <div className="song">
-        <span style={fin}></span>
-        <div className="song-title">
-          <a href={this.props.url} target="_blank">
-            {this.props.title}
-          </a>
-        </div>
+        <a href={this.props.url} target="_blank">
+          <div>
+            <span style={fin}></span>
+            <div className="song-title">
+              {this.props.title}
+            </div>
+          </div>
+        </a>
+        {divider}
       </div>
     )
   }

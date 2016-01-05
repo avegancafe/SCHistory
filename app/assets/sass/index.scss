@@ -1,19 +1,27 @@
 *:focus {
-    outline: 0px;
+  outline: 0px;
 }
 
 a:link {
-    text-decoration: none;
-    color: inherit;
+  text-decoration: none;
+  color: inherit;
 }
 
 a:visited {
-    color: inherit;
+  color: inherit;
+}
+
+html {
+  padding: 0 0;
+  margin: 0 0;
 }
 
 body {
-    font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
-    font-size: 100%;
+  font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+  font-size: 100%;
+  padding: 0 0;
+  margin: 0 0;
+  box-sizing: border-box;
 }
 
 #clear {
@@ -21,9 +29,9 @@ body {
   background-color: #f50;
   color: white;
 
-  margin: 5px 5px;
-  padding: 5px 5px;
-  width: calc(100% - 20px);
+  margin: 5px 7.5px;
+  padding: 5px 0;
+  width: calc(100% - 15px);
   text-align: center;
 
   &:hover {
@@ -32,25 +40,42 @@ body {
 }
 
 #react {
-    width: 400px;
+  width: 400px;
 }
 
 .song {
-    width: 100%;
+  width: calc(100% - 15px);
+  padding: 0 10px 0 5px;
+  & .song-title {
+    line-height: calc(2em + 10px);
+    width: calc(100% - 40px);
+    display: inline-block;
+    vertical-align: top;
+    overflow-x: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
 
-    & .song-title {
-        line-height: calc(2em + 10px);
-        width: calc(100% - 40px);
-        display: inline-block;
-        vertical-align: top;
-        overflow-x: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-    }
+  & span {
+    margin: 5px 5px 0 5px;
+    display: inline-block;
+  }
 
-    & span {
-        margin: 5px 5px 0 5px;
-        display: inline-block;
-    }
+  & > a > div {
+    background-color: white;
+    transition-property: background-color;
+    transition-timing-function: ease;
+    transition-duration: 200ms;
+  }
+
+  & > a > div:hover {
+    background-color: rgba(255, 85, 0, 0.4);
+  }
+
+  & .divider {
+    width: 83%;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+  }
 }
 

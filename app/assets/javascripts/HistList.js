@@ -38,9 +38,11 @@ var HistList = React.createClass({displayName: "HistList",
    return (
       React.createElement("div", null, 
         React.createElement("div", {id: "clear", onClick: this.clearHist}, "Clear"), 
-        this.state.songList.map(function (el, i, arr) {
-          return React.createElement(Song, {key: i, imgStyle: el.img, title: el.title, url: el.url})
-        }).reverse()
+        
+          this.state.songList.reverse().map(function (el, i, arr) {
+            return React.createElement(Song, {key: i, imgStyle: el.img, title: el.title, url: el.url, i: i/(arr.length-1 || 1)})
+          })
+        
       )
     );
   }
@@ -51,7 +53,8 @@ var Song = React.createClass({displayName: "Song",
     return {
       imgStyle: "",
       url: "",
-      title: ""
+      title: "",
+      i: 0
     }
   },
 
@@ -59,20 +62,29 @@ var Song = React.createClass({displayName: "Song",
     var fin = {
       "backgroundSize": "cover"
     };
-    var p = /([^;\s]+):([^;]*)/g;
+    var p = /([\w-]+):\s?([^;]*)/g;
     var m;
+    console.log(this.props.imgStyle);
     while ( (m = p.exec(this.props.imgStyle)) !== null) {
+      console.log(m[1], ":", m[2]);
       fin[toCamelCase(m[1])] = m[2];
     }
-
+    var divider;
+    if (this.props.i < 1)
+      divider = React.createElement("hr", {className: "divider"});
+    else
+      divider = "";
     return (
       React.createElement("div", {className: "song"}, 
-        React.createElement("span", {style: fin}), 
-        React.createElement("div", {className: "song-title"}, 
-          React.createElement("a", {href: this.props.url, target: "_blank"}, 
-            this.props.title
+        React.createElement("a", {href: this.props.url, target: "_blank"}, 
+          React.createElement("div", null, 
+            React.createElement("span", {style: fin}), 
+            React.createElement("div", {className: "song-title"}, 
+              this.props.title
+            )
           )
-        )
+        ), 
+        divider
       )
     )
   }

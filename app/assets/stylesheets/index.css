@@ -8,17 +8,24 @@ a:link {
 a:visited {
   color: inherit; }
 
+html {
+  padding: 0 0;
+  margin: 0 0; }
+
 body {
   font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
-  font-size: 100%; }
+  font-size: 100%;
+  padding: 0 0;
+  margin: 0 0;
+  box-sizing: border-box; }
 
 #clear {
   border-radius: 3px;
   background-color: #f50;
   color: white;
-  margin: 5px 5px;
-  padding: 5px 5px;
-  width: calc(100% - 20px);
+  margin: 5px 7.5px;
+  padding: 5px 0;
+  width: calc(100% - 15px);
   text-align: center; }
   #clear:hover {
     cursor: pointer; }
@@ -27,7 +34,8 @@ body {
   width: 400px; }
 
 .song {
-  width: 100%; }
+  width: calc(100% - 15px);
+  padding: 0 10px 0 5px; }
   .song .song-title {
     line-height: calc(2em + 10px);
     width: calc(100% - 40px);
@@ -39,3 +47,14 @@ body {
   .song span {
     margin: 5px 5px 0 5px;
     display: inline-block; }
+  .song > a > div {
+    background-color: white;
+    transition-property: background-color;
+    transition-timing-function: ease;
+    transition-duration: 200ms; }
+  .song > a > div:hover {
+    background-color: rgba(255, 85, 0, 0.4); }
+  .song .divider {
+    width: 83%;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.2); }
