@@ -36,14 +36,16 @@ var HistList = React.createClass({
 
   render: function () {
    return (
-      <div>
-        <div id="clear" onClick={this.clearHist}>Clear</div>
-        {
-          this.state.songList.reverse().map(function (el, i, arr) {
-            return <Song key={i} imgStyle={el.img} title={el.title} url={el.url} i={i/(arr.length-1 || 1)}/>
-          })
-        }
-      </div>
+     <span id="no-blur">
+        <div>
+          <div id="clear" onClick={this.clearHist}>Clear</div>
+          {
+            this.state.songList.reverse().map(function (el, i, arr) {
+              return <Song key={i} imgStyle={el.img} title={el.title} url={el.url} i={i/(arr.length-1 || 1)}/>
+            })
+          }
+        </div>
+      </span>
     );
   }
 });
@@ -94,4 +96,3 @@ ReactDOM.render(
   <HistList />,
   document.getElementById("react")
 );
-

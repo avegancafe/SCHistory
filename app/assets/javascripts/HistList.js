@@ -36,13 +36,15 @@ var HistList = React.createClass({displayName: "HistList",
 
   render: function () {
    return (
-      React.createElement("div", null, 
-        React.createElement("div", {id: "clear", onClick: this.clearHist}, "Clear"), 
-        
-          this.state.songList.reverse().map(function (el, i, arr) {
-            return React.createElement(Song, {key: i, imgStyle: el.img, title: el.title, url: el.url, i: i/(arr.length-1 || 1)})
-          })
-        
+     React.createElement("span", {id: "no-blur"}, 
+        React.createElement("div", null, 
+          React.createElement("div", {id: "clear", onClick: this.clearHist}, "Clear"), 
+          
+            this.state.songList.reverse().map(function (el, i, arr) {
+              return React.createElement(Song, {key: i, imgStyle: el.img, title: el.title, url: el.url, i: i/(arr.length-1 || 1)})
+            })
+          
+        )
       )
     );
   }
@@ -94,4 +96,3 @@ ReactDOM.render(
   React.createElement(HistList, null),
   document.getElementById("react")
 );
-
