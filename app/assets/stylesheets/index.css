@@ -1,3 +1,51 @@
+@-webkit-keyframes revealPlayer {
+  0% {
+    height: 0%; }
+  100% {
+    height: 45%; } }
+
+@-moz-keyframes revealPlayer {
+  0% {
+    height: 0%; }
+  100% {
+    height: 45%; } }
+
+@-o-keyframes revealPlayer {
+  0% {
+    height: 0%; }
+  100% {
+    height: 45%; } }
+
+@keyframes revealPlayer {
+  0% {
+    height: 0%; }
+  100% {
+    height: 45%; } }
+
+@-webkit-keyframes hidePlayer {
+  0% {
+    height: 45%; }
+  100% {
+    height: 0%; } }
+
+@-moz-keyframes hidePlayer {
+  0% {
+    height: 45%; }
+  100% {
+    height: 0%; } }
+
+@-o-keyframes hidePlayer {
+  0% {
+    height: 45%; }
+  100% {
+    height: 0%; } }
+
+@keyframes hidePlayer {
+  0% {
+    height: 45%; }
+  100% {
+    height: 0%; } }
+
 *:focus {
   outline: 0px; }
 
@@ -30,6 +78,17 @@ body {
   #clear:hover {
     cursor: pointer; }
 
+#music-player {
+  border-radius: 3px;
+  background-color: black;
+  color: white;
+  margin: 5px 7.5px;
+  padding: 5px 0;
+  width: calc(100% - 15px);
+  text-align: center; }
+  #music-player:hover {
+    cursor: pointer; }
+
 #react {
   width: 400px; }
 
@@ -58,3 +117,13 @@ body {
     width: 83%;
     height: 0;
     border-top: 1px solid rgba(0, 0, 0, 0.2); }
+
+#player-container {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 0%;
+  background-color: #333;
+  opacity: 0.5; }
+  #player-container #player-close {
+    opacity: 1; }

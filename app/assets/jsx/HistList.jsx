@@ -34,16 +34,32 @@ var HistList = React.createClass({
     this._getSongList();
   },
 
+  showPlayer: function () {
+    var playerContainer = document.getElementById('player-container');
+    playerContainer.style.animation = "revealPlayer 0.5s 1";
+    playerContainer.style.height = "45%";
+  },
+
+  closePlayer: function () {
+    var playerContainer = document.getElementById('player-container');
+    playerContainer.style.animation = "hidePlayer 0.5s 1";
+    playerContainer.style.height = "0%";
+  },
+
   render: function () {
    return (
      <span id="no-blur">
         <div>
           <div id="clear" onClick={this.clearHist}>Clear</div>
+          <div id="music-player" onClick={this.showPlayer}>Open Music Player</div>
           {
             this.state.songList.reverse().map(function (el, i, arr) {
               return <Song key={i} imgStyle={el.img} title={el.title} url={el.url} i={i/(arr.length-1 || 1)}/>
             })
           }
+        </div>
+        <div id="player-container">
+          <button id="player-close" onClick={this.closePlayer}>X</button>
         </div>
       </span>
     );
@@ -91,6 +107,8 @@ var Song = React.createClass({
     )
   }
 });
+
+
 
 ReactDOM.render(
   <HistList />,
