@@ -39,7 +39,7 @@ var HistList = React.createClass({displayName: "HistList",
       React.createElement("div", null, 
         React.createElement("div", {id: "clear", onClick: this.clearHist}, "Clear"), 
         
-          this.state.songList.reverse().map(function (el, i, arr) {
+          this.state.songList.map(function (el, i, arr) {
             return React.createElement(Song, {key: i, imgStyle: el.img, title: el.title, url: el.url, i: i/(arr.length-1 || 1)})
           })
         
@@ -64,9 +64,7 @@ var Song = React.createClass({displayName: "Song",
     };
     var p = /([\w-]+):\s?([^;]*)/g;
     var m;
-    console.log(this.props.imgStyle);
     while ( (m = p.exec(this.props.imgStyle)) !== null) {
-      console.log(m[1], ":", m[2]);
       fin[toCamelCase(m[1])] = m[2];
     }
     var divider;
