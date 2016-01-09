@@ -48,6 +48,7 @@ var HistList = React.createClass({
 
   render: function () {
    return (
+
      <span id="no-blur">
         <div>
           <div id="clear" onClick={this.clearHist}>Clear</div>
@@ -62,6 +63,7 @@ var HistList = React.createClass({
           <button id="player-close" onClick={this.closePlayer}>X</button>
         </div>
       </span>
+
     );
   }
 });
@@ -82,9 +84,7 @@ var Song = React.createClass({
     };
     var p = /([\w-]+):\s?([^;]*)/g;
     var m;
-    console.log(this.props.imgStyle);
     while ( (m = p.exec(this.props.imgStyle)) !== null) {
-      console.log(m[1], ":", m[2]);
       fin[toCamelCase(m[1])] = m[2];
     }
     var divider;

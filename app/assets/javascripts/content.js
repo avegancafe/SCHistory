@@ -41,8 +41,8 @@ var songObserver = new MutationObserver(
                   items.SCHistory.splice(ind, 1);
                 }
 
-                items.SCHistory.push(song);
-                chrome.storage.local.set({"SCHistory": items.SCHistory});
+                items.SCHistory.splice(0, 0, song);
+                chrome.storage.local.set({"SCHistory": items.SCHistory.slice(0, 50)});
             });
         }
     }
