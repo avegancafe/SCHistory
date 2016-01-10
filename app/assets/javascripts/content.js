@@ -17,7 +17,7 @@ var songObserver = new MutationObserver(
                 }
                 song.title = cur.title;
                 song.url = cur.href;
-                song.img = img.getAttribute("style").replace(" opacity: 0;", "");
+                song.img = img.getAttribute("style").replace("opacity: 0;", "");
                 break;
             }
         }
