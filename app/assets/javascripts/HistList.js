@@ -54,7 +54,7 @@ var HistList = React.createClass({displayName: "HistList",
           React.createElement("div", {id: "clear", onClick: this.clearHist}, "Clear"), 
           React.createElement("div", {id: "music-player", onClick: this.showPlayer}, "Open Music Player"), 
           
-            this.state.songList.reverse().map(function (el, i, arr) {
+            this.state.songList.map(function (el, i, arr) {
               return React.createElement(Song, {key: i, imgStyle: el.img, title: el.title, url: el.url, i: i/(arr.length-1 || 1)})
             })
           

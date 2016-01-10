@@ -8,13 +8,7 @@ var songObserver = new MutationObserver(
         for(var i = 0; i < muts.length; i++) {
             if (muts[i].target.classList.contains("playbackSoundBadge")) {
                 var cur = muts[i].target.getElementsByClassName("playbackSoundBadge__title sc-truncate")[0];
-                var posImg = muts[i].target.getElementsByClassName("sc-artwork")[0];
-                var img;
-                if (posImg.childNodes.length > 0) {
-                    img = posImg.childNodes[1];
-                } else {
-                    img = posImg;
-                }
+                var img = muts[i].target.querySelector("span.sc-artwork");
                 song.title = cur.title;
                 song.url = cur.href;
                 song.img = img.getAttribute("style").replace("opacity: 0;", "");
