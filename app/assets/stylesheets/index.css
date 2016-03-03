@@ -82,6 +82,7 @@ body {
   border-radius: 3px;
   background-color: black;
   color: white;
+  display: none;
   margin: 5px 7.5px;
   padding: 5px 0;
   width: calc(100% - 15px);
