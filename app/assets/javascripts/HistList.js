@@ -46,18 +46,22 @@ var HistList = React.createClass({displayName: "HistList",
     playerContainer.style.height = "0%";
   },
 
+  songComponents: function () {
+    return this.state.songList.map(function (el, i, arr) {
+      return React.createElement(Song, {key: i, imgStyle: el.img, title: el.title, url: el.url, i: i/(arr.length-1 || 1)})
+    });
+  },
+
   render: function () {
-   return (
+    var tmpSongs;
+    var emptySongList = (React.createElement("div", {className: "no-songs"}, "Get some tunes bumping!"));
+    return (
 
      React.createElement("span", {id: "no-blur"}, 
         React.createElement("div", null, 
           React.createElement("div", {id: "clear", onClick: this.clearHist}, "Clear"), 
           React.createElement("div", {id: "music-player", onClick: this.showPlayer}, "Open Music Player"), 
-          
-            this.state.songList.map(function (el, i, arr) {
-              return React.createElement(Song, {key: i, imgStyle: el.img, title: el.title, url: el.url, i: i/(arr.length-1 || 1)})
-            })
-          
+           (tmpSongs = this.songComponents()).length > 0 ? tmpSongs : emptySongList
         ), 
         React.createElement("div", {id: "player-container"}, 
           React.createElement("button", {id: "player-close", onClick: this.closePlayer}, "X")

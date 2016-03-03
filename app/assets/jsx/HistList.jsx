@@ -53,13 +53,15 @@ var HistList = React.createClass({
   },
 
   render: function () {
-   return (
+    var tmpSongs;
+    var emptySongList = (<div className="no-songs">Get some tunes bumping!</div>);
+    return (
 
      <span id="no-blur">
         <div>
           <div id="clear" onClick={this.clearHist}>Clear</div>
           <div id="music-player" onClick={this.showPlayer}>Open Music Player</div>
-          {this.songComponents() || "Get some tunes bumping!"}
+          { (tmpSongs = this.songComponents()).length > 0 ? tmpSongs : emptySongList }
         </div>
         <div id="player-container">
           <button id="player-close" onClick={this.closePlayer}>X</button>
