@@ -46,6 +46,12 @@ var HistList = React.createClass({
     playerContainer.style.height = "0%";
   },
 
+  songComponents: function () {
+    return this.state.songList.map(function (el, i, arr) {
+      return <Song key={i} imgStyle={el.img} title={el.title} url={el.url} i={i/(arr.length-1 || 1)}/>
+    });
+  },
+
   render: function () {
    return (
 
@@ -53,11 +59,7 @@ var HistList = React.createClass({
         <div>
           <div id="clear" onClick={this.clearHist}>Clear</div>
           <div id="music-player" onClick={this.showPlayer}>Open Music Player</div>
-          {
-            this.state.songList.map(function (el, i, arr) {
-              return <Song key={i} imgStyle={el.img} title={el.title} url={el.url} i={i/(arr.length-1 || 1)}/>
-            })
-          }
+          {this.songComponents() || "Get some tunes bumping!"}
         </div>
         <div id="player-container">
           <button id="player-close" onClick={this.closePlayer}>X</button>
