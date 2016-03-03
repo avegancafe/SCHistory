@@ -15,7 +15,7 @@ gulp.task("sass", function () {
     .pipe(gulp.dest("app/assets/stylesheets"));
 });
 
-gulp.task("build", function () {
+gulp.task("build", [ "sass", "react" ], function () {
   return gulp.src(["node_modules", "app/assets/jsx", "app/assets/scss"])
     .pipe(clean());
 });
